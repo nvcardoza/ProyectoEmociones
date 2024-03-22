@@ -1,0 +1,27 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Pedir al usuario que ingrese cómo se siente
+        System.out.println("¿Cómo te sientes?");
+        String emocion = scanner.nextLine();
+
+        // Reflexión y mensaje creativo
+        System.out.println(" Genial! sigue así ");
+        System.out.println("La felicidad puede cambiar tu día. ¿Qué tal si encuentras algo que te hizo sonreír hoy?");
+        // Espacio para que el usuario escriba lo que lo haría sentir mejor
+        System.out.println();
+
+        // Leer la respuesta del usuario
+        String respuestaUsuario = scanner.nextLine();
+        System.out.println();
+
+        // Mostrar mensaje motivacional
+        System.out.println("Recuerda que sentirse feliz es lo mejor para su estado emocinal!");
+        System.out.println("¡Tú puedes superar cualquier desafío!");
+
+        scanner.close();
+    }
+}
