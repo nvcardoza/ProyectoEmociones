@@ -1,0 +1,58 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Listado de emociones
+        String[] emociones = {"feliz", "triste", "frustrado", "enojado", "pensativo", "preocupado", "confundido", "emocionado"};
+
+        // Pedir al usuario que ingrese cómo se siente
+        System.out.println("¿Cómo te sientes?");
+        for (int i = 0; i < emociones.length; i++) {
+            System.out.println((i + 1) + ". " + emociones[i]);
+        }
+        int opcion = scanner.nextInt();
+        scanner.nextLine(); // Consumir el salto de línea
+
+        // Verificar si la opción ingresada es válida
+        if (opcion < 1 || opcion > emociones.length) {
+            System.out.println("Opción inválida");
+            return;
+        }
+
+        String emocion = emociones[opcion - 1];
+
+        // Pedir al usuario que describa su emoción
+        System.out.println("Describe cómo te sientes " + emocion + ":");
+        String descripcion = scanner.nextLine();
+
+        // Mostrar mensaje de ayuda según la emoción seleccionada
+        switch (emocion) {
+            case "feliz":
+                System.out.println("¡Qué bueno verte feliz! ¿Hay algo en especial que te haya alegrado?");
+                break;
+            case "triste":
+                System.out.println("Lo siento por escuchar que te sientes triste. ¿Quieres hablar al respecto?");
+                break;
+            case "frustrado":
+            case "enojado":
+                System.out.println("Entiendo que estés frustrado/enojado. ¿Hay algo que pueda hacer para ayudarte?");
+                break;
+            case "pensativo":
+                System.out.println("¿En qué estás pensando? A veces es útil hablar sobre ello.");
+                break;
+            case "preocupado":
+                System.out.println("Parece que estás preocupado. ¿Te gustaría discutir sobre ello?");
+                break;
+            case "confundido":
+                System.out.println("Estar confundido es normal. ¿Puedo aclarar algo para ti?");
+                break;
+            case "emocionado":
+                System.out.println("¡Qué emoción! ¿Puedes compartir más sobre lo que te tiene emocionado?");
+                break;
+            default:
+                System.out.println("No puedo detectar tu emoción.");
+        }
+    }
+}
