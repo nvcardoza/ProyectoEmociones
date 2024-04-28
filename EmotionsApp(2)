@@ -1,0 +1,106 @@
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
+class Emotion {
+    private String name;
+    private int count;
+
+    public Emotion(String name) {
+        this.name = name;
+        this.count = 0;
+    }
+
+    public void incrementCount() {
+        this.count++;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public String getName() {
+        return name;
+    }
+}
+
+class Usuario {
+    private String nombre;
+    private int edad;
+    private String correoElectronico;
+    private String contrasena;
+    private Map<String, Emotion> emociones;
+
+    public Usuario(String nombre, int edad, String correoElectronico, String contrasena) {
+        this.nombre = nombre;
+        this.edad = edad;
+        this.correoElectronico = correoElectronico;
+        this.contrasena = contrasena;
+        this.emociones = new HashMap<>();
+        // Agrega todas las emociones aquí
+        emociones.put("Alegría", new Emotion("Alegría"));
+        emociones.put("Tolerancia", new Emotion("Tolerancia"));
+        emociones.put("Diversión", new Emotion("Diversión"));
+        // ...
+    }
+
+    public void ingresarEmocion(String emocion) {
+        if (emociones.containsKey(emocion)) {
+            emociones.get(emocion).incrementCount();
+        }
+    }
+
+    public String mostrarFrecuencia() {
+        Emotion maxEmotion = null;
+        for (Emotion emotion : emociones.values()) {
+            if (maxEmotion == null || emotion.getCount() > maxEmotion.getCount()) {
+                maxEmotion = emotion;
+            }
+        }
+        return maxEmotion.getName();
+    }
+
+    public String getMensaje(String emocion) {
+        // Agrega mensajes para cada emoción aquí
+        switch (emocion) {
+            case "Alegría":
+                return "¡Sigue propagando la positividad!";
+            case "Tolerancia":
+                return "La paciencia es clave.";
+            case "Diversión":
+                return "¡Disfruta la vida al máximo!";
+            // ...
+            default:
+                return "Emoción desconocida";
+        }
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Ingresa tu nombre: ");
+        String nombre = scanner.nextLine();
+        System.out.print("Ingresa tu edad: ");
+        int edad = scanner.nextInt();
+        scanner.nextLine(); // Consumir el salto de línea
+        System.out.print("Ingresa tu correo electrónico: ");
+        String correoElectronico = scanner.nextLine();
+        System.out.print("Ingresa tu contraseña: ");
+        String contrasena = scanner.nextLine();
+
+        Usuario usuario = new Usuario(nombre, edad, correoElectronico, contrasena);
+
+        for (int i = 0; i < 30; i++) {
+            System.out.print("¿Cómo te sentiste hoy? (Alegría, Tolerancia, Diversión, etc.): ");
+            String emocion = scanner.nextLine();
+            usuario.ingresarEmocion(emocion);
+        }
+
+        String maxEmocion = usuario.mostrarFrecuencia();
+        String mensaje = usuario.getMensaje(maxEmocion);
+
+        System.out.println("La emoción más repetida fue: " + maxEmocion);
+        System.out.println("Mensaje: " + mensaje);
+    }
+}
